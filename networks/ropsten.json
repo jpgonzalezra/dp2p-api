@@ -1,0 +1,7 @@
+{
+    "network": "ropsten",
+    "dp2p": {
+      "address": "0x1e804C29e1bda212F22d2E8C3421BeE48efA2fbb",
+      "startBlock": "8904628"
+    }
+  }

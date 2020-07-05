@@ -1,0 +1,39 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: DP2P
+    network: ropsten
+    source:
+      address: "{{dp2p.address}}"
+      abi: DP2P
+      startBlock: {{ dp2p.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - CreateAndDeposit
+        - ReleaseWithSellerSignature
+        - DisputeResolved
+        - Cancel
+      abis:
+        - name: DP2P
+          file: ./abis/DP2P.json
+      eventHandlers:
+        - event: CreateAndDeposit(bytes32,address,address,address,uint256,uint256,address)
+          handler: handleCreateAndDepositEscrow
+        - event: Cancel(bytes32,uint256)
+          handler: handleCancel
+        - event: ReleaseWithSellerSignature(bytes32,address,address,uint256,uint256)
+          handler: handleRelease
+        - event: DisputeResolved(bytes32,address,address,uint256,uint256,bool)
+          handler: handleDisputeResolved
+        - event: EscrowComplete(bytes32,address)
+          handler: handleEscrowComplete
+        - event: NewAgent(address,uint256)
+          handler: handlerNewAgent
+        - event: RemoveAgent(address)
+          handler: handlerRemoveAgent
+      file: ./src/Dp2pMapping.ts

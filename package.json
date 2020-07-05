@@ -1,0 +1,24 @@
+{
+  "name": "dp2p-api",
+  "version": "1.0.0",
+  "description": "dp2p api",
+  "author": "jpgonzalezra",
+  "license": "MIT",
+  "scripts": {
+    "reinstall": "rm -rf node_modules/ && yarn",
+    "clean": "rm -rf build/ generated/",
+    
+    "prepare:ropsten": "mustache networks/ropsten.json subgraph.template.yaml subgraph.ropsten.yaml",
+    "gen:ropsten": "graph codegen subgraph.ropsten.yaml",
+    "deploy:ropsten": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ jpgonzalezra/dp2p-api subgraph.ropsten.yaml",
+
+    "codegen": "graph codegen",
+    "build": "graph build"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.18.0",
+    "@graphprotocol/graph-ts": "0.18.1",
+    "mustache": "4.0.1"
+
+  }
+}

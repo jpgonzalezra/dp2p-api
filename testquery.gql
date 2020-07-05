@@ -1,0 +1,33 @@
+{
+  escrows(first: 20) {
+    id
+    agent {
+      id
+      fee
+      active
+    }
+    seller {
+      id
+      karma {
+        id
+        bad
+        good
+      }
+    }
+    buyer {
+      id
+      karma {
+        id
+        bad
+        good
+      }
+    }
+    type
+    currentState
+  }
+  karmas(first: 5) {
+    id
+    bad
+    good
+  }
+}

@@ -1,0 +1,27 @@
+type Karma @entity {
+  id: ID!
+  good: BigInt!
+  bad: BigInt!
+}
+
+type Person @entity {
+  id: ID!
+  karma: Karma
+}
+
+type Agent @entity {
+  id: ID!
+  fee: BigInt!
+  active: Boolean!
+}
+
+type Escrow @entity {
+  id: ID!
+  agent: Agent!
+  seller: Person!
+  buyer: Person!
+  token: Bytes!
+  balance: BigInt!
+  type: Boolean
+  currentState: String!
+}
